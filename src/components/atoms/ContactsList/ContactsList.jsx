@@ -4,11 +4,15 @@ import PropTypes from "prop-types"
 import styled from "styled-components";
 
 const ContactsList = ({ displayedContacts, onClick }) => {
-  return <StyledList>
-    {displayedContacts?.map((contact) => (
-      <ListItem key={contact.id} contact={contact} onClick={onClick} />
-    ))}
-  </StyledList>
+  if (displayedContacts.length !== 0) {
+    return <StyledList>
+      {displayedContacts?.map((contact) => (
+        <ListItem key={contact.id} contact={contact} onClick={onClick} />
+      ))}
+    </StyledList>
+  } else {
+    return <p>No contacts in the list. Add your first contact</p>
+  }
 }
 
 ContactsList.propTypes = {
