@@ -7,12 +7,7 @@ import styled from "styled-components"
 
 class App extends Component {
   state = {
-    contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ],
+    contacts: [],
     filter: ""
   }
   
@@ -32,7 +27,6 @@ class App extends Component {
     this.setState({
       filter: searchQuery
     })
-    console.log(searchQuery)
   }
   
   deleteContact = ( contactId ) =>
@@ -40,6 +34,17 @@ class App extends Component {
       contacts: this.state.contacts.filter((contact) => contact.id !== contactId),
   })
   
+  componentDidUpdate( prevState ) {
+    if ( this.state.contacts !== prevState.contacts ) localStorage.setItem('Contacts', JSON.stringify(this.state.contacts))
+  }
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('Contacts')
+    const parsedContacts = JSON.parse(contacts)
+
+    if ( parsedContacts ) this.setState({ contacts: parsedContacts })
+  }
+
   render() {
     const normalizedFilter = this.state.filter.toLowerCase()
     const displayedContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
