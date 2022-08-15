@@ -1,43 +1,45 @@
-import React, { Component } from "react";
-import Button from "components/atoms/Button/Button";
-import Input from "components/atoms/Input/Input";
-import Title from "components/atoms/Title/Title";
-import styled from "styled-components";
-import { nanoid } from "nanoid";
+import React, { Component } from 'react';
+import Button from 'components/atoms/Button/Button';
+import Input from 'components/atoms/Input/Input';
+import Title from 'components/atoms/Title/Title';
+import { StyledForm } from './Form.styled';
+import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
-    name: "",
-    number: "",
-  }
+    name: '',
+    number: '',
+  };
 
-  onChange = ( event ) => {
-    const { name, value } = event.currentTarget
-    this.setState({ [name]: value })
-  }
+  onChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
+  };
 
-  handleAddContact = ( event ) => {
-    event.preventDefault()
+  handleAddContact = event => {
+    event.preventDefault();
 
     const addedContact = {
       id: 'id-' + nanoid(2),
       name: this.state.name,
       number: this.state.number,
-    }
+    };
 
-    this.props.onSubmit(addedContact)
-    this.resetContactForm()
-  }
+    this.props.onSubmit(addedContact);
+    this.resetContactForm();
+  };
 
   resetContactForm = () => {
-    this.setState({ name: "", number: "" })
-  }
-  
+    this.setState({ name: '', number: '' });
+  };
+
   render() {
-    const nameRegExp = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+    const nameRegExp =
+      "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
     // eslint-disable-next-line
-    const phoneRegexp = "\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-    const { name, number } = this.state
+    const phoneRegexp =
+      '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}';
+    const { name, number } = this.state;
 
     return (
       <StyledForm onSubmit={this.handleAddContact}>
@@ -63,16 +65,8 @@ class ContactForm extends Component {
         />
         <Button btnText="Add contact" />
       </StyledForm>
-    )
+    );
   }
 }
 
-const StyledForm = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center
-`
-
-export default ContactForm
+export default ContactForm;

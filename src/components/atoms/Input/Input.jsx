@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types"
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyledInput } from './Input.styled';
 
 const Input = ({ type, name, value, onChange, title, required, pattern }) => {
   return (
@@ -14,8 +14,8 @@ const Input = ({ type, name, value, onChange, title, required, pattern }) => {
       onChange={onChange}
       autoComplete="off"
     />
-  )
-}
+  );
+};
 
 Input.propTypes = {
   type: PropTypes.string.isRequired,
@@ -24,12 +24,7 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   required: PropTypes.bool,
-  pattern: PropTypes.string
-}
+  pattern: PropTypes.string,
+};
 
-const StyledInput = styled.input`
-  height: 2rem;
-  width: 75%
-`
-
-export default Input
+export default Input;

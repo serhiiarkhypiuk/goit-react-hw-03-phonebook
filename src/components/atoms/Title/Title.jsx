@@ -1,16 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types"
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyledTitle } from './Title.styled';
 
 const Title = ({ headerTitle }) => {
-  return <StyledTitle>{headerTitle}</StyledTitle>
-}
+  return <StyledTitle>{headerTitle}</StyledTitle>;
+};
 
 Title.propTypes = {
-  headerTitle: PropTypes.string.isRequired
-}
+  headerTitle: PropTypes.string.isRequired,
+};
 
-const StyledTitle = styled.h2`
-  font-style: italic
-`
-export default Title
+export default Title;
